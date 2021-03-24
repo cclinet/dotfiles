@@ -386,3 +386,5 @@ export npm_config_prefix=~/.node_modules
 PATH="$PATH:/opt/cuda/bin"
 CUDAToolkit_ROOT="/opt/cuda"
 
+#snap
+PATH="$PATH:/var/lib/snapd/snap/bin"

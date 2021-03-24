@@ -1,0 +1,138 @@
+#compdef _kubecm kubecm
+
+
+
+
+function _kubecm {
+  local -a commands
+
+  _arguments -C \
+    '--config[path of kubeconfig]:()' \
+    "1: :->cmnds" \
+    "*::arg:->args"
+
+  case $state in
+  cmnds)
+    commands=(
+      "add:Add KubeConfig to $HOME/.kube/config"
+      "alias:Generate alias for all contexts"
+      "clear:Clear lapsed context, cluster and user"
+      "completion:Generates bash/zsh completion scripts"
+      "delete:Delete the specified context from the kubeconfig"
+      "help:Help about any command"
+      "ls:List KubeConfig"
+      "merge:Merge the KubeConfig files in the specified directory"
+      "namespace:Switch or change namespace interactively"
+      "rename:Rename the contexts of kubeconfig"
+      "switch:Switch Kube Context interactively"
+      "version:Print version info"
+    )
+    _describe "command" commands
+    ;;
+  esac
+
+  case "$words[1]" in
+  add)
+    _kubecm_add
+    ;;
+  alias)
+    _kubecm_alias
+    ;;
+  clear)
+    _kubecm_clear
+    ;;
+  completion)
+    _kubecm_completion
+    ;;
+  delete)
+    _kubecm_delete
+    ;;
+  help)
+    _kubecm_help
+    ;;
+  ls)
+    _kubecm_ls
+    ;;
+  merge)
+    _kubecm_merge
+    ;;
+  namespace)
+    _kubecm_namespace
+    ;;
+  rename)
+    _kubecm_rename
+    ;;
+  switch)
+    _kubecm_switch
+    ;;
+  version)
+    _kubecm_version
+    ;;
+  esac
+}
+
+function _kubecm_add {
+  _arguments \
+    '(-f --file)'{-f,--file}'[Path to merge kubeconfig files]:()' \
+    '--config[path of kubeconfig]:()'
+}
+
+function _kubecm_alias {
+  _arguments \
+    '(-o --out)'{-o,--out}'[output to ~/.zshrc or ~/.bash_profile]:()' \
+    '--config[path of kubeconfig]:()'
+}
+
+function _kubecm_clear {
+  _arguments \
+    '--config[path of kubeconfig]:()'
+}
+
+function _kubecm_completion {
+  _arguments \
+    '(-h --help)'{-h,--help}'[help for completion]' \
+    '--config[path of kubeconfig]:()'
+}
+
+function _kubecm_delete {
+  _arguments \
+    '--config[path of kubeconfig]:()'
+}
+
+function _kubecm_help {
+  _arguments \
+    '--config[path of kubeconfig]:()'
+}
+
+function _kubecm_ls {
+  _arguments \
+    '--config[path of kubeconfig]:()'
+}
+
+function _kubecm_merge {
+  _arguments \
+    '(-f --folder)'{-f,--folder}'[KubeConfig folder]:()' \
+    '--config[path of kubeconfig]:()'
+}
+
+function _kubecm_namespace {
+  _arguments \
+    '--config[path of kubeconfig]:()'
+}
+
+function _kubecm_rename {
+  _arguments \
+    '--config[path of kubeconfig]:()'
+}
+
+function _kubecm_switch {
+  _arguments \
+    '--config[path of kubeconfig]:()'
+}
+
+function _kubecm_version {
+  _arguments \
+    '--config[path of kubeconfig]:()'
+}
+
+compdef _kubecm kubecm
